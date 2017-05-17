@@ -7,29 +7,20 @@ var initialize = function(){
 
   var mainMap = new MapWrapper(container, zoom, center);
 
+  var button = document.querySelector("button");
+
+
   mainMap.addMarker(arthursSeat);
 
   mainMap.addClickEvent();
 
-
-  //brain fried, the below methods probably shouldn't be in the initialise method. Not working properly
-
-  var setNewCenter = function(map){
-      map.setCenter({lat: 32.307800, lng: -64.750500})
-      map.setZoom(9);
+  var setNewCenter = function(){
+      mainMap.googleMap.setCenter({lat: 32.307800, lng: -64.750500})
+      mainMap.googleMap.setZoom(9);
       console.log("button clicked");
     }
 
-  var button = document.querySelector("button");
-  button.addEventListener("click", setNewCenter(mainMap.googleMap));
-
-  var resetCenter = function(map){
-      map.setCenter(center);
-      map.setZoom(3);
-    }
-
-  var resetButton = document.getElementById("reset");
-  resetButton.addEventListener("click", resetCenter(mainMap.googleMap));
+  button.addEventListener("click", setNewCenter);
 
 
 }
